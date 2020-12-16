@@ -174,8 +174,13 @@ module.exports = function(source) {
 
       // Use a relative path for helpers if helper directories are given
       // unless automatic relative helper resolution has been turned off
-      if (type === 'helper' && query.helperDirs && query.helperDirs.length && rootRelative !== '') {
-        return './' + ref;
+      // if (type === 'helper' && query.helperDirs && query.helperDirs.length && rootRelative !== '') {
+      //   return './' + ref;
+      // }
+      if (type === 'helper') {
+        return rootRelative + 'helpers/' + ref;
+      } else if (type === 'partial') {
+        return rootRelative + 'partials/' + ref;
       }
 
       return rootRelative + ref;
